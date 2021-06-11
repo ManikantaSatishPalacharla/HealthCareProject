@@ -28,13 +28,10 @@ public class TestResult implements Serializable{
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="appointment_no")
 	private Appointment appointment;
-	
-	
 
 	public TestResult() {
 		super();
 	}
-
 
 	public TestResult(int id, double testReading, String condition, Appointment appointment) {
 		super();

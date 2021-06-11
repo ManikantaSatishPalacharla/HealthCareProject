@@ -4,8 +4,8 @@ package com.health.boot.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -22,7 +22,7 @@ public class DiagnosticTest {
 		private double testPrice;
 		private String normalValue;
 		private String units;
-		@ManyToMany(fetch=FetchType.LAZY,mappedBy="diagnosticCenters")
+		@ManyToMany(cascade=CascadeType.ALL)
 		private Set<DiagnosticCenter> diagnosticCenters = new HashSet<>();
 		
 		public DiagnosticTest(int id, String testName, double testPrice, String normalValue, String units,

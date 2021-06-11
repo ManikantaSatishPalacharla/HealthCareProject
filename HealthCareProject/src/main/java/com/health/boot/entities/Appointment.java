@@ -1,5 +1,7 @@
 package com.health.boot.entities;
 
+
+
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -27,10 +29,10 @@ public class Appointment {
 	private Patient patient;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="appointment_id")
+	@JoinColumn(name="diago_center")
 	private DiagnosticCenter diagnosticCenter;
 	
-	@OneToMany()
+	@OneToMany(mappedBy="appointment")
 	private Set<TestResult> testResult;
 	
 	
@@ -102,6 +104,7 @@ public class Appointment {
 	}
 
 	public Set<TestResult> getTestResult() {
+
 		return testResult;
 	}
 
@@ -111,6 +114,7 @@ public class Appointment {
 	
 	public void addTestResult(TestResult t) {
 		t.setAppointment(this);			//this will avoid nested cascade
+		System.out.println(t);
 		this.getTestResult().add(t);
 	}
 	
@@ -118,5 +122,11 @@ public class Appointment {
 		this.getDiagnosticTests().add(dTest);
 	}
 
-}
+	@Override
+	public String toString() {
+		return "Appointment [id=" + id + ", appointmentDate=" + appointmentDate + ", approvalStatus=" + approvalStatus
+				+ ", diagnosticTests=" + diagnosticTests + ", patient=" + patient + ", diagnosticCenter="
+				+ diagnosticCenter + ", testResult=" + testResult + "]";
+	}
 
+}

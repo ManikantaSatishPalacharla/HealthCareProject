@@ -1,8 +1,5 @@
 package com.health.boot.entities;
 
-
-
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -108,7 +105,8 @@ public class Patient implements Serializable {
 	}
 	
 	
-	public void addAppointment(Appointment a) {			//this will avoid nested cascade
+	public void addAppointment(Appointment a) {	
+		a.setPatient(this);//this will avoid nested cascade
 		this.getAppointments().add(a);
 	}
 
@@ -122,12 +120,4 @@ public class Patient implements Serializable {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-
 }
